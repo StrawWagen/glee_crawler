@@ -22,7 +22,6 @@ local set = {
             class = "evil_crawler",
             spawnType = "hunter",
             difficultyCost = { 10 },
-            isBoss = true,
         },
     },
 }
