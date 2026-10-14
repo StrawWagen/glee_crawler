@@ -7,7 +7,7 @@ if SERVER then
         name = "the_evil_crawlers", -- unique name
         prettyName = "The Evil Crawlers",
         description = "They... Crawl...",
-        maxSpawnCount = 5, -- hard cap on count
+        maxSpawnCount = 10, -- hard cap on count , this one checks :Health
         chanceToBeVotable = 0.15,
         chanceToBeVotableIfHard = 0.5,
 
@@ -25,6 +25,8 @@ if SERVER then
                 prettyName = "A Crawler",
                 class = "evil_crawler",
                 spawnType = "hunter",
+                countClass = "evil_crawler",
+                maxCount = 6,  -- this one does not check :Health
                 difficultyCost = { 10 },
             },
         },
