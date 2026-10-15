@@ -9,7 +9,7 @@ if SERVER then
         maxSpawnCount = 10, -- hard cap on count , this one checks :Health
         startingSpawnCount = 1,
         chanceToBeVotable = 0.25,
-        chanceToBeVotableIfHard = 1,
+        chanceToBeVotableIfHard = 10,
 
         roundStartSound = "common/null.wav",
 

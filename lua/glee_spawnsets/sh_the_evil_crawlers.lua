@@ -4,12 +4,11 @@ local set = {
 
 if SERVER then
     local setSv = {
-        name = "the_evil_crawlers", -- unique name
-        prettyName = "The Feeding Ground",
+        prettyName = "The Crawlers",
         description = "They hunger...",
         maxSpawnCount = 20, -- hard cap on count , this one checks :Health
         chanceToBeVotable = 0.15,
-        chanceToBeVotableIfHard = 0.5,
+        chanceToBeVotableIfHard = 5,
 
         roundStartSound = "common/null.wav",
 
