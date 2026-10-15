@@ -8,7 +8,7 @@ if SERVER then
         description = "They hunger...",
         maxSpawnCount = 20, -- hard cap on count , this one checks :Health
         chanceToBeVotable = 0.15,
-        chanceToBeVotableIfHard = 5,
+        chanceToBeVotableIfHard = 3,
 
         roundStartSound = "common/null.wav",
 
