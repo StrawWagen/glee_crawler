@@ -10,6 +10,8 @@ if SERVER then
         chanceToBeVotable = 0.15,
         chanceToBeVotableIfHard = 2,
 
+        genericSpawnerRate = 2, -- less spawns
+
         roundStartSound = "common/null.wav",
 
         -- FAR AWAY FROM THE PLAYER
