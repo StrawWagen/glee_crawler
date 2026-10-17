@@ -27,6 +27,15 @@ if SERVER then
                 class = "evil_crawler",
                 spawnType = "hunter",
                 countClass = "evil_crawler",
+                maxCount = 1,  -- this one does not check :Health
+                difficultyCost = { 10 },
+            },
+            {
+                name = "a_crawler_EXTRA",
+                prettyName = "A Crawler",
+                class = "evil_crawler",
+                spawnType = "hunter",
+                countClass = "evil_crawler",
                 maxCount = 12,  -- this one does not check :Health
                 difficultyCost = { 100 },
             },
