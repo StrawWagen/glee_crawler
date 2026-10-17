@@ -16,7 +16,7 @@ if SERVER then
 
         -- FAR AWAY FROM THE PLAYER
         maxSpawnDist = 10000,
-        minSpawnDist = 5000,
+        minSpawnDist = "default",
 
         resourcesAdded = { "3818771209" },
 
