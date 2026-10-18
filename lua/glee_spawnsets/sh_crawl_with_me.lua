@@ -68,7 +68,6 @@ end
 if SERVER then
     hook.Add( "PlayerSay", "glee_crawlwithme_secret", function( sender, text )
         if text ~= "crawl with me" then return end
-        if os.date( "*t" ).hour >= 3 then return end -- crawl with me at night
         if GAMEMODE:GetSpawnSet() == "crawl_with_me" then return end
 
         sender.glee_SaidCrawlWithMe = true
