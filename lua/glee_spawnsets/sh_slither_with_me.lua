@@ -38,9 +38,10 @@ if SERVER then
                 prettyName = "A Snake",
                 class = "evil_snake",
                 spawnType = "hunter",
+                preferredEFlags = GAMEMODE.NavEFlags.UNDER_SKY,
                 scaryAsATerminator = true,
                 countClass = "evil_snake",
-                maxCount = 1,  -- this one does not check :Health
+                maxCount = 2,  -- this one does not check :Health
                 difficultyCost = { 10 },
             },
             {
@@ -50,7 +51,7 @@ if SERVER then
                 spawnType = "hunter",
                 scaryAsATerminator = true,
                 countClass = "evil_snake",
-                maxCount = 6,  -- this one does not check :Health
+                maxCount = 8,  -- this one does not check :Health
                 difficultyCost = { 100 },
             },
         },
