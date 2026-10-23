@@ -48,6 +48,14 @@ if scripted_ents.GetStored( "evil_fungus" ) then
         fungus.glee_NoEnemyToRemove = math.huge
 
     end
+    -- hunters spawn 20 up and fall, but the fungus seeds where it stands and only grows along a surface
+    local function seedOnFloor( _, fungus, spawnPos )
+        local tr = util.TraceLine( { start = spawnPos, endpos = spawnPos - Vector( 0, 0, 64 ), mask = MASK_SOLID_BRUSHONLY } )
+        if not tr.Hit or tr.StartSolid then return end
+        fungus.SpawnAt = tr.HitPos
+        fungus.SpawnUp = tr.HitNormal
+
+    end
 
     table.insert( set.resourcesAdded, "3821991353" )
     table.insert( set.spawns, {
@@ -60,6 +68,7 @@ if scripted_ents.GetStored( "evil_fungus" ) then
         maxCount = 3,
         difficultyCost = { 50 },
         difficultyNeeded = { 50, 500 }, -- rerolled each round, early in some, late in others
+        preSpawnedFuncs = { seedOnFloor },
         postSpawnedFuncs = { neverStale },
     } )
 end

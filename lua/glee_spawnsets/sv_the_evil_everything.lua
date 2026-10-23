@@ -11,6 +11,14 @@ local function neverStale( _, spawned )
     spawned.glee_NoEnemyToRemove = math.huge
 
 end
+-- hunters spawn 20 up and fall, but the fungus seeds where it stands and only grows along a surface
+local function seedOnFloor( _, spawned, spawnPos )
+    local tr = util.TraceLine( { start = spawnPos, endpos = spawnPos - Vector( 0, 0, 64 ), mask = MASK_SOLID_BRUSHONLY } )
+    if not tr.Hit or tr.StartSolid then return end
+    spawned.SpawnAt = tr.HitPos
+    spawned.SpawnUp = tr.HitNormal
+
+end
 
 local set = {
     name = "the_evil_everything", -- unique name
@@ -78,6 +86,7 @@ local set = {
             maxCount = 3,
             difficultyCost = { 50 },
             difficultyNeeded = { 50, 500 }, -- rerolled each round, early in some, late in others
+            preSpawnedFuncs = { seedOnFloor },
             postSpawnedFuncs = { neverStale },
         },
     },
