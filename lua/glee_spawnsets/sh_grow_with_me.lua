@@ -26,7 +26,7 @@ if SERVER then
         description = "grow with me",
         maxSpawnCount = 20, -- hard cap on count , this one checks :Health
         chanceToBeVotable = 0.15,
-        chanceToBeVotableWhenHard = 2,
+        chanceToBeVotableWhenHard = 3,
 
         genericSpawnerRate = 2, -- less item spawns
 

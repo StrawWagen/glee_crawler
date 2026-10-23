@@ -22,7 +22,7 @@ local set = {
     description = "It spreads...",
     maxSpawnCount = 20, -- hard cap on count , this one checks :Health
     chanceToBeVotable = 0.15,
-    chanceToBeVotableWhenHard = 3,
+    chanceToBeVotableWhenHard = 6,
 
     roundStartSound = "common/null.wav",
 

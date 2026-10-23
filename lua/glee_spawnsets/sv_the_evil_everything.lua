@@ -25,7 +25,8 @@ local set = {
     prettyName = "The Nest",
     description = "They crawl... They slither... It spreads...",
     maxSpawnCount = 20, -- hard cap on count , this one checks :Health
-    chanceToBeVotable = 0.02, -- very very rare, and no WhenHard so it stays that way
+    chanceToBeVotable = 0.05,
+    chanceToBeVotableWhenHard = 4,
 
     roundStartSound = "common/null.wav",
 

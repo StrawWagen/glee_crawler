@@ -7,8 +7,8 @@ local set = {
     prettyName = "The Crawlers",
     description = "They hunger...",
     maxSpawnCount = 20, -- hard cap on count , this one checks :Health
-    chanceToBeVotable = 0.15,
-    chanceToBeVotableWhenHard = 3,
+    chanceToBeVotable = 0.5,
+    chanceToBeVotableWhenHard = 10,
 
     roundStartSound = "common/null.wav",
 
