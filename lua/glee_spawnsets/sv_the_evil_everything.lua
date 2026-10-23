@@ -65,7 +65,7 @@ local set = {
             scaryAsATerminator = true,
             countClass = "evil_crawler",
             maxCount = 4,  -- this one does not check :Health
-            difficultyCost = { 120, 180 }, -- the pricier _EXTRA gets picked first, so let the dearer one swap between rounds
+            difficultyCost = { 75, 150 }, -- the pricier _EXTRA gets picked first, so let the dearer one swap between rounds
         },
         {
             name = "a_snake_EXTRA",
@@ -75,7 +75,7 @@ local set = {
             scaryAsATerminator = true,
             countClass = "evil_snake",
             maxCount = 4,  -- this one does not check :Health
-            difficultyCost = { 120, 180 },
+            difficultyCost = { 75, 150 },
         },
         {
             name = "a_fungus",

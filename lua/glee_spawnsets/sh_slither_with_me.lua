@@ -60,7 +60,7 @@ if SERVER then
                 scaryAsATerminator = true,
                 countClass = "evil_snake",
                 maxCount = 8,  -- this one does not check :Health
-                difficultyCost = { 100 },
+                difficultyCost = { 50, 100 },
             },
         },
     }
@@ -108,7 +108,7 @@ if SERVER then
         end
         RunConsoleCommand( "huntersglee_spawnset", "slither_with_me" )
 
-    end )
+    end, HOOK_MONITOR_LOW )
 end
 
 -- put the spawnset IN the global table to be gobbled

@@ -3,7 +3,7 @@ local fungus = scripted_ents.GetStored( "evil_fungus" )
 if not fungus then return end
 
 local set = {
-    name = "grow_with_me", -- unique name
+    name = "spread_with_me", -- unique name
 }
 
 if SERVER then
@@ -22,8 +22,8 @@ if SERVER then
     end
 
     local setSv = {
-        prettyName = "grow with me",
-        description = "grow with me",
+        prettyName = "spread with me",
+        description = "spread with me",
         maxSpawnCount = 20, -- hard cap on count , this one checks :Health
         chanceToBeVotable = 0.15,
         chanceToBeVotableWhenHard = 3,
@@ -46,7 +46,7 @@ if SERVER then
                 spawnType = "hunter",
                 scaryAsATerminator = true,
                 countClass = "evil_fungus",
-                maxCount = 1,  -- this one does not check :Health
+                maxCount = 2,  -- this one does not check :Health
                 difficultyCost = { 10 },
                 preSpawnedFuncs = { seedOnFloor },
                 postSpawnedFuncs = { neverStale },
@@ -58,8 +58,8 @@ if SERVER then
                 spawnType = "hunter",
                 scaryAsATerminator = true,
                 countClass = "evil_fungus",
-                maxCount = 3,  -- this one does not check :Health
-                difficultyCost = { 100 },
+                maxCount = 6,  -- this one does not check :Health
+                difficultyCost = { 50, 100 },
                 preSpawnedFuncs = { seedOnFloor },
                 postSpawnedFuncs = { neverStale },
             },
@@ -90,24 +90,24 @@ function set:Activate()
 end
 
 if SERVER then
-    hook.Add( "PlayerSay", "glee_growwithme_secret", function( sender, text )
-        if text ~= "grow with me" then return end
-        if GAMEMODE:GetSpawnSet() == "grow_with_me" then return end
+    hook.Add( "PlayerSay", "glee_spreadwithme_secret", function( sender, text )
+        if text ~= "spread with me" then return end
+        if GAMEMODE:GetSpawnSet() == "spread_with_me" then return end
 
-        sender.glee_SaidGrowWithMe = true
+        sender.glee_SaidSpreadWithMe = true
 
         local humans = player.GetHumans()
         for _, ply in ipairs( humans ) do
-            if not ply.glee_SaidGrowWithMe then return end
+            if not ply.glee_SaidSpreadWithMe then return end
 
         end
         for _, ply in ipairs( humans ) do
-            ply.glee_SaidGrowWithMe = nil
+            ply.glee_SaidSpreadWithMe = nil
 
         end
-        RunConsoleCommand( "huntersglee_spawnset", "grow_with_me" )
+        RunConsoleCommand( "huntersglee_spawnset", "spread_with_me" )
 
-    end )
+    end, HOOK_MONITOR_LOW )
 end
 
 -- put the spawnset IN the global table to be gobbled

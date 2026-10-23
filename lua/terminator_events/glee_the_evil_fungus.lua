@@ -1,6 +1,10 @@
 
 local newEvent = {
     defaultPercentChancePerMin = 0.1,
+    secret = {
+        keyword = "spread with me",
+        chanceIncrease = 5,
+    },
 
     navmeshEvent = true,
     variants = {

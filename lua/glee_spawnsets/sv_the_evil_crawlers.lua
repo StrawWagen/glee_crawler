@@ -36,7 +36,7 @@ local set = {
             scaryAsATerminator = true,
             countClass = "evil_crawler",
             maxCount = 6,  -- this one does not check :Health
-            difficultyCost = { 150 },
+            difficultyCost = { 50, 100 },
         },
     },
 }
