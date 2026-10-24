@@ -105,7 +105,7 @@ if SERVER then
             ply.glee_SaidSpreadWithMe = nil
 
         end
-        RunConsoleCommand( "huntersglee_spawnset", "spread_with_me" )
+        RunConsoleCommand( "huntersglee_misery", "spread_with_me" )
 
     end, HOOK_MONITOR_LOW )
 end

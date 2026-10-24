@@ -106,7 +106,7 @@ if SERVER then
             ply.glee_SaidSlitherWithMe = nil
 
         end
-        RunConsoleCommand( "huntersglee_spawnset", "slither_with_me" )
+        RunConsoleCommand( "huntersglee_misery", "slither_with_me" )
 
     end, HOOK_MONITOR_LOW )
 end
