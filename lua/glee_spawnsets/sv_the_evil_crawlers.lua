@@ -34,7 +34,7 @@ local set = {
             spawnType = "hunter",
             scaryAsATerminator = true,
             countClass = "evil_crawler",
-            maxCount = 6,  -- this one does not check :Health
+            maxCount = 8,  -- this one does not check :Health
             difficultyCost = { 50, 100 },
         },
     },

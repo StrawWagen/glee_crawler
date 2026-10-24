@@ -52,7 +52,7 @@ local set = {
             spawnType = "hunter",
             scaryAsATerminator = true,
             countClass = "evil_crawler",
-            maxCount = 4,  -- this one does not check :Health
+            maxCount = 8,  -- this one does not check :Health
             difficultyCost = { 75, 150 }, -- the pricier _EXTRA gets picked first, so let the dearer one swap between rounds
         },
         {
@@ -62,7 +62,7 @@ local set = {
             spawnType = "hunter",
             scaryAsATerminator = true,
             countClass = "evil_snake",
-            maxCount = 4,  -- this one does not check :Health
+            maxCount = 8,  -- this one does not check :Health
             difficultyCost = { 75, 150 },
         },
         {
@@ -72,7 +72,7 @@ local set = {
             spawnType = "hunter",
             scaryAsATerminator = true,
             countClass = "evil_fungus",
-            maxCount = 3,
+            maxCount = 8,
             difficultyCost = { 50 },
             difficultyNeeded = { 50, 500 }, -- rerolled each round, early in some, late in others
             preSpawnedFuncs = { seedFungus },

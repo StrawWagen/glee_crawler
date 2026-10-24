@@ -61,8 +61,8 @@ if scripted_ents.GetStored( "evil_crawler" ) then
         spawnType = "hunter",
         scaryAsATerminator = true,
         countClass = "evil_crawler",
-        maxCount = 1,
-        difficultyCost = { 10 },
+        maxCount = 3,
+        difficultyCost = { 50, 100 },
         difficultyNeeded = { 30, 100 },
     } )
 end

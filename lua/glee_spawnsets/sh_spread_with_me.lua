@@ -66,8 +66,8 @@ if SERVER then
             spawnType = "hunter",
             scaryAsATerminator = true,
             countClass = "evil_crawler",
-            maxCount = 1,
-            difficultyCost = { 10 },
+            maxCount = 3,
+            difficultyCost = { 75, 150 },
             difficultyNeeded = { 30, 100 },
         } )
     end
