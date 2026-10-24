@@ -1,26 +1,33 @@
 
 local setHelpers = ( GM or GAMEMODE ).setHelpers
 
-local ragdollSearchDistSqr = 10000^2
+local corpseSearchDistSqr = 10000^2
 
--- nearest ragdoll no alive player can see, that hasn't already grown a fungus
-local function findHiddenRagdoll( pos )
+-- nearest ent of class no alive player can see, that hasn't already grown a fungus
+local function findHiddenCorpse( class, pos, filter )
     local candidates = {}
-    for _, rag in ipairs( ents.FindByClass( "prop_ragdoll" ) ) do
-        if rag.glee_SeededFungus then continue end
-        local distSqr = rag:GetPos():DistToSqr( pos )
-        if distSqr > ragdollSearchDistSqr then continue end
-        table.insert( candidates, { rag = rag, distSqr = distSqr } )
+    for _, ent in ipairs( ents.FindByClass( class ) ) do
+        if ent.glee_SeededFungus then continue end
+        if filter and not filter( ent ) then continue end
+        local distSqr = ent:GetPos():DistToSqr( pos )
+        if distSqr > corpseSearchDistSqr then continue end
+        table.insert( candidates, { ent = ent, distSqr = distSqr } )
 
     end
     table.SortByMember( candidates, "distSqr", true )
 
     for _, candidate in ipairs( candidates ) do
-        if not terminator_Extras.posIsInterruptingAlive( candidate.rag:WorldSpaceCenter() ) then
-            return candidate.rag
+        if not terminator_Extras.posIsInterruptingAlive( candidate.ent:WorldSpaceCenter() ) then
+            return candidate.ent
 
         end
     end
+end
+
+-- the gamemode only sets skullSteamId on skulls dropped by a player's death
+local function isPlayerDeathSkull( skull )
+    return skull.skullSteamId ~= nil
+
 end
 
 -- the fungus only grows along a surface, so it needs the floor under pos
@@ -33,13 +40,13 @@ local function seedOnFloorUnder( fungus, pos )
 
 end
 
--- A .preSpawnedFuncs entry for evil_fungus. Seeds under a hidden ragdoll within 5000u if there is one,
--- each ragdoll seeds once. Otherwise under spawnPos, where hunters would spawn 20 up and fall.
+-- A .preSpawnedFuncs entry for evil_fungus. Seeds under a hidden ragdoll within 10000u, else under a hidden
+-- player-death skull, each seeds once. Otherwise under spawnPos, where hunters would spawn 20 up and fall.
 -- The entity still spawns at spawnPos, but it moves itself onto its seed as it settles
 function setHelpers.preSpawnedSeedFungus( _, fungus, spawnPos )
-    local rag = findHiddenRagdoll( spawnPos )
-    if rag and seedOnFloorUnder( fungus, rag:WorldSpaceCenter() ) then
-        rag.glee_SeededFungus = true
+    local corpse = findHiddenCorpse( "prop_ragdoll", spawnPos ) or findHiddenCorpse( "termhunt_skull_pickup", spawnPos, isPlayerDeathSkull )
+    if corpse and seedOnFloorUnder( fungus, corpse:WorldSpaceCenter() ) then
+        corpse.glee_SeededFungus = true
         return
 
     end
