@@ -67,6 +67,7 @@ if SERVER then
             difficultyNeeded = { 50, 500 }, -- rerolled each round, early in some, late in others
             preSpawnedFuncs = { seedFungus },
             postSpawnedFuncs = { neverStale },
+            removeAfterStillSeconds = 30,
         } )
     end
     table.Merge( set, setSv )

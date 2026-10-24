@@ -34,6 +34,7 @@ local set = {
             difficultyCost = { 10 },
             preSpawnedFuncs = { seedFungus },
             postSpawnedFuncs = { neverStale },
+            removeAfterStillSeconds = 30,
         },
         {
             name = "a_fungus_EXTRA", -- and some more later as difficulty goes up
@@ -46,6 +47,7 @@ local set = {
             difficultyCost = { 50, 100 },
             preSpawnedFuncs = { seedFungus },
             postSpawnedFuncs = { neverStale },
+            removeAfterStillSeconds = 30,
         },
     },
 }

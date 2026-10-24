@@ -47,8 +47,8 @@ function setHelpers.preSpawnedSeedFungus( _, fungus, spawnPos )
 
 end
 
--- A .postSpawnedFuncs entry. For hunters that barely move and have no GetEnemy, like the fungus,
--- that the spawner's stale check would cull within a couple minutes
+-- A .postSpawnedFuncs entry. For hunters with no GetEnemy that don't close in on players, like the fungus,
+-- that the spawner's stale check would cull. Pair with .removeAfterStillSeconds so stuck ones still go
 function setHelpers.postSpawnedNeverStale( _, spawned )
     spawned.glee_NoEnemyToRemove = math.huge
 
