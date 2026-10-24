@@ -9,19 +9,8 @@ local set = {
 if SERVER then
     local hasFungus = scripted_ents.GetStored( "evil_fungus" )
 
-    -- it barely moves and has no GetEnemy, so the spawner's stale check would cull it within a couple minutes
-    local function neverStale( _, fungus )
-        fungus.glee_NoEnemyToRemove = math.huge
-
-    end
-    -- hunters spawn 20 up and fall, but the fungus seeds where it stands and only grows along a surface
-    local function seedOnFloor( _, fungus, spawnPos )
-        local tr = util.TraceLine( { start = spawnPos, endpos = spawnPos - Vector( 0, 0, 64 ), mask = MASK_SOLID_BRUSHONLY } )
-        if not tr.Hit or tr.StartSolid then return end
-        fungus.SpawnAt = tr.HitPos
-        fungus.SpawnUp = tr.HitNormal
-
-    end
+    local neverStale = GAMEMODE.setHelpers.postSpawnedNeverStale
+    local seedFungus = GAMEMODE.setHelpers.preSpawnedSeedFungus
 
     local setSv = {
         prettyName = "crawl with me",
@@ -75,7 +64,7 @@ if SERVER then
             maxCount = 2,
             difficultyCost = { 50 },
             difficultyNeeded = { 50, 500 }, -- rerolled each round, early in some, late in others
-            preSpawnedFuncs = { seedOnFloor },
+            preSpawnedFuncs = { seedFungus },
             postSpawnedFuncs = { neverStale },
         } )
     end

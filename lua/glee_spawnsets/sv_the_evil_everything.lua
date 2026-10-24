@@ -6,19 +6,8 @@ if not snake then return end
 local fungus = scripted_ents.GetStored( "evil_fungus" )
 if not fungus then return end
 
--- it barely moves and has no GetEnemy, so the spawner's stale check would cull it within a couple minutes
-local function neverStale( _, spawned )
-    spawned.glee_NoEnemyToRemove = math.huge
-
-end
--- hunters spawn 20 up and fall, but the fungus seeds where it stands and only grows along a surface
-local function seedOnFloor( _, spawned, spawnPos )
-    local tr = util.TraceLine( { start = spawnPos, endpos = spawnPos - Vector( 0, 0, 64 ), mask = MASK_SOLID_BRUSHONLY } )
-    if not tr.Hit or tr.StartSolid then return end
-    spawned.SpawnAt = tr.HitPos
-    spawned.SpawnUp = tr.HitNormal
-
-end
+local neverStale = GAMEMODE.setHelpers.postSpawnedNeverStale
+local seedFungus = GAMEMODE.setHelpers.preSpawnedSeedFungus
 
 local set = {
     name = "the_evil_everything", -- unique name
@@ -30,9 +19,8 @@ local set = {
 
     roundStartSound = "common/null.wav",
 
-    -- FAR AWAY FROM THE PLAYER
-    maxSpawnDist = 10000,
-    minSpawnDist = "default",
+    maxSpawnDist = "default*0.5",
+    minSpawnDist = "default*0.5",
 
     resourcesAdded = { "3818771209", "3823748254", "3821991353" },
 
@@ -87,7 +75,7 @@ local set = {
             maxCount = 3,
             difficultyCost = { 50 },
             difficultyNeeded = { 50, 500 }, -- rerolled each round, early in some, late in others
-            preSpawnedFuncs = { seedOnFloor },
+            preSpawnedFuncs = { seedFungus },
             postSpawnedFuncs = { neverStale },
         },
     },
