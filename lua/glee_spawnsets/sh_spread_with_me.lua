@@ -85,6 +85,7 @@ if SERVER then
     hook.Add( "PlayerSay", "glee_spreadwithme_secret", function( sender, text )
         if text ~= "spread with me" then return end
         if GAMEMODE:GetSpawnSet() == "spread_with_me" then return end
+        if CurTime() < 120 then return end
 
         sender.glee_SaidSpreadWithMe = true
 

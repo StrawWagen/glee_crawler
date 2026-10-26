@@ -84,6 +84,7 @@ if SERVER then
     hook.Add( "PlayerSay", "glee_slitherwithme_secret", function( sender, text )
         if text ~= "slither with me" then return end
         if GAMEMODE:GetSpawnSet() == "slither_with_me" then return end
+        if CurTime() < 120 then return end
 
         sender.glee_SaidSlitherWithMe = true
 

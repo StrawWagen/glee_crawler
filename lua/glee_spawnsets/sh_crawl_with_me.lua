@@ -83,6 +83,7 @@ if SERVER then
     hook.Add( "PlayerSay", "glee_crawlwithme_secret", function( sender, text )
         if text ~= "crawl with me" then return end
         if GAMEMODE:GetSpawnSet() == "crawl_with_me" then return end
+        if CurTime() < 120 then return end
 
         sender.glee_SaidCrawlWithMe = true
 
