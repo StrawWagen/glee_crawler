@@ -77,7 +77,7 @@ end
 
 function set:Activate()
     GAMEMODE.setHelpers.makeHardcore( self )
-    GAMEMODE.setHelpers.addDefaultWeapon( self, "weapon_glee_crapvidcam" )
+    GAMEMODE.setHelpers.addStartWeapon( self, "weapon_glee_crapvidcam" )
 
 end
 

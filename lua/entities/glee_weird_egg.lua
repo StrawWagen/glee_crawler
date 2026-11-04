@@ -36,6 +36,7 @@ function ENT:Initialize()
 
     self:SetMoveType( MOVETYPE_VPHYSICS )
     self:PhysicsInit( SOLID_VPHYSICS )
+    self:SetNW2Bool( "glee_IsSpectatable", true )
 
     local phys = self:GetPhysicsObject()
     if IsValid( phys ) then

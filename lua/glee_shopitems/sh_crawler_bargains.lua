@@ -34,10 +34,6 @@ end
 
 if scripted_ents.GetStored( "evil_fungus" ) then
     if SERVER then
-        local growInterval = {
-            min = 60 * 3,
-            max = 60 * 6,
-        }
         local deathDropAliveFor = 60 * 3
 
         GAMEMODE:RegisterStatusEffect( "fungal_host",
@@ -49,11 +45,6 @@ if scripted_ents.GetStored( "evil_fungus" ) then
                 end
                 function self:SetHeld( held )
                     owner:SetNW2Int( "glee_fungalhost_held", held )
-
-                end
-
-                function self:ScheduleGrowth()
-                    self.nextGrowth = CurTime() + math.Rand( growInterval.min, growInterval.max )
 
                 end
 
@@ -73,33 +64,12 @@ if scripted_ents.GetStored( "evil_fungus" ) then
 
                 end
 
-                function self:Grow()
-                    self:ScheduleGrowth()
-                    if self:GetHeld() < 1 then
-                        self:SetHeld( 1 )
-                        owner:EmitSound( "ambient/levels/canals/toxic_slime_gurgle5.wav", 65, 60, 1, CHAN_STATIC )
-                        huntersGlee_Announce( { owner }, 50, 6, "You're a host now...\nLet it out, before it grows." )
-                        return
-
-                    end
-
-                    -- already holding one, it gets out on its own and the new one takes its place
-                    if not self:PlantUnder( owner:WorldSpaceCenter() ) then return end
-                    GAMEMODE:Bleed( owner, 20 )
-                    GAMEMODE:GivePanic( owner, 40 )
-                    owner:ViewPunch( Angle( 10, 0, 0 ) )
-                    huntersGlee_Announce( { owner }, 50, 6, "The Fungus has broken out of you..." )
-
-                end
-
                 self.aliveSince = CurTime()
                 self:SetHeld( 1 )
-                self:ScheduleGrowth()
 
                 self:Hook( "glee_true_PlayerSpawn", function( spawned )
                     if spawned ~= owner then return end
                     self.aliveSince = CurTime()
-                    self:ScheduleGrowth()
 
                 end )
 
@@ -111,16 +81,11 @@ if scripted_ents.GetStored( "evil_fungus" ) then
 
                 end )
 
-                self:Timer( "fungal_host_grow", 0.1, 0, function()
+                -- the swep's lifetime is the growth timer, so a fresh one each life restarts it
+                self:Timer( "fungal_host_give", 0.1, 0, function()
                     if owner:Health() <= 0 then return end
-
-                    if not IsValid( owner:GetWeapon( "glee_fungalhost" ) ) then
-                        owner:Give( "glee_fungalhost" )
-
-                    end
-
-                    if CurTime() < self.nextGrowth then return end
-                    self:Grow()
+                    if IsValid( owner:GetWeapon( "glee_fungalhost" ) ) then return end
+                    owner:Give( "glee_fungalhost" )
 
                 end )
             end,

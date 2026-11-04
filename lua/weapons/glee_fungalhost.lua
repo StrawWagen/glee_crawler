@@ -53,6 +53,56 @@ function SWEP:Initialize()
     if not SERVER then return end
     self.Spores = {}
 
+    -- in a timer, not Think, so it grows while holstered
+    self:ScheduleGrowth()
+    self.growTimerName = "glee_fungalhost_grow_" .. self:EntIndex()
+    timer.Create( self.growTimerName, 0.1, 0, function()
+        if not IsValid( self ) then return end
+        local owner = self:GetOwner()
+        if not IsValid( owner ) or owner:Health() <= 0 then return end
+        if CurTime() < self.nextGrowth then return end
+        self:Grow()
+
+    end )
+end
+
+function SWEP:OnRemove()
+    if not self.growTimerName then return end
+    timer.Remove( self.growTimerName )
+
+end
+
+local growInterval = {
+    min = 60 * 2,
+    max = 60 * 4,
+}
+
+function SWEP:ScheduleGrowth()
+    self.nextGrowth = CurTime() + math.Rand( growInterval.min, growInterval.max )
+
+end
+
+function SWEP:Grow()
+    self:ScheduleGrowth()
+    local owner = self:GetOwner()
+    local effect = owner.GetStatusEffect and owner:GetStatusEffect( "fungal_host" )
+    if not effect then return end
+
+    if effect:GetHeld() < 1 then
+        effect:SetHeld( 1 )
+        owner:EmitSound( "ambient/levels/canals/toxic_slime_gurgle5.wav", 65, 60, 1, CHAN_STATIC )
+        huntersGlee_Announce( { owner }, 50, 6, "Your fungus has grown.\nLet it out..." )
+        return
+
+    end
+
+    -- already holding one, it gets out on its own and the new one takes its place
+    if not effect:PlantUnder( owner:WorldSpaceCenter() ) then return end
+    GAMEMODE:Bleed( owner, 20 )
+    GAMEMODE:GivePanic( owner, 40 )
+    owner:ViewPunch( Angle( 10, 0, 0 ) )
+    huntersGlee_Announce( { owner }, 50, 6, "The Fungus has broken out of you..." )
+
 end
 
 function SWEP:DrawWorldModel() end

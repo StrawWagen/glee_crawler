@@ -1,6 +1,6 @@
 
 local newEvent = {
-    defaultPercentChancePerMin = 0.1,
+    defaultPercentChancePerMin = 0.075,
     secret = {
         keyword = "crawl with me",
         chanceIncrease = 5,
