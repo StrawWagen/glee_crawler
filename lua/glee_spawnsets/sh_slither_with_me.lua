@@ -76,6 +76,8 @@ end
 
 function set:Activate()
     GAMEMODE.setHelpers.makeHardcore( self )
+
+    if not SERVER then return end
     GAMEMODE.setHelpers.addStartWeapon( self, "weapon_glee_crapvidcam" )
 
 end
