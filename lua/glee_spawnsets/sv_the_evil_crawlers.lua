@@ -9,7 +9,7 @@ local set = {
     maxSpawnCount = 20, -- hard cap on count , this one checks :Health
     chanceToBeVotable = 15,
 
-    roundStartSound = "common/null.wav",
+    roundEarlyStartSound = "hunters_glee/music/MICHEALGORG/crawler_concept.wav",
 
     maxSpawnDist = "default*1.5",
     minSpawnDist = "default",

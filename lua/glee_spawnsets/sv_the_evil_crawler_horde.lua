@@ -11,7 +11,7 @@ local set = {
     chanceToBeVotable = 0.05,
     chanceToBeVotableWhenHard = 1,
 
-    roundStartSound = "common/null.wav",
+    roundEarlyStartSound = "hunters_glee/music/MICHEALGORG/crawler_concept.wav",
 
     maxSpawnDist = "default*1.5",
     minSpawnDist = "default",

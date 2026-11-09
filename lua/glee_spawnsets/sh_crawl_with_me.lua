@@ -21,7 +21,7 @@ if SERVER then
 
         genericSpawnerRate = 2, -- less item spawns
 
-        roundStartSound = "common/null.wav",
+        roundEarlyStartSound = "hunters_glee/music/MICHEALGORG/crawler_concept.wav",
 
         -- FAR AWAY FROM THE PLAYER
         maxSpawnDist = 10000,
