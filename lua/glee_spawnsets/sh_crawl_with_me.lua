@@ -29,6 +29,8 @@ if SERVER then
 
         resourcesAdded = { "3818771209" },
 
+        startWeapons = { "weapon_glee_crapvidcam" },
+
         spawns = {
             {
                 name = "a_crawler",
@@ -75,9 +77,6 @@ end
 
 function set:Activate()
     GAMEMODE.setHelpers.makeHardcore( self )
-
-    if not SERVER then return end
-    GAMEMODE.setHelpers.addStartWeapon( self, "weapon_glee_crapvidcam" )
 
 end
 
